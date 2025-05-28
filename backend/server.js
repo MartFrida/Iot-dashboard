@@ -1,11 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import 'dotenv/config';
-import buildingsRoutes from './routes/buildings.js';
+import buildingsRoutes from './routes/buildings.js'; import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
-const { DB_HOST, PORT = 3001 } = process.env
+const { DB_HOST, PORT = 5000 } = process.env
+
 app.use(cors());
 app.use(express.json());
 
