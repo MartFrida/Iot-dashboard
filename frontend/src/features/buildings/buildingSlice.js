@@ -1,23 +1,25 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 export const fetchBuildings = createAsyncThunk('buildings/fetch', async () => {
-  const res = await axios.get('http://localhost:5000/api/buildings');
+  const res = await axios.get(`${apiUrl}api/buildings`);
   return res.data;
 });
 
 export const addBuilding = createAsyncThunk('buildings/add', async (data) => {
-  const res = await axios.post('http://localhost:5000/api/buildings', data);
+  const res = await axios.post(`${apiUrl}api/buildings`, data);
   return res.data;
 });
 
 export const deleteBuilding = createAsyncThunk('buildings/delete', async (id) => {
-  await axios.delete(`http://localhost:5000/api/buildings/${id}`);
+  await axios.delete(`${apiUrl}api/buildings/${id}`);
   return id;
 });
 
 export const updateBuilding = createAsyncThunk('buildings/update', async ({ id, name, location }) => {
-  const res = await axios.put(`http://localhost:5000/api/buildings/${id}`, { name, location });
+  const res = await axios.put(`${apiUrl}api/buildings/${id}`, { name, location });
   return res.data;
 });
 
